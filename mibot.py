@@ -155,7 +155,10 @@ async def cancelar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return ConversationHandler.END
 
 # Crear app
-app = ApplicationBuilder().token("7233780519:AAEzGE8daJpNvFnO6SK0X26wZvJ5b5rDHI0").build()
+
+import os
+app = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
+
 
 # Conversación
 conv_handler = ConversationHandler(
