@@ -22,7 +22,7 @@ db = mysql.connector.connect(
 #para usar con railway
 conexion = mysql.connector.connect(
     host=os.getenv("MYSQLHOST", "crossover.proxy.rlwy.net"),
-    port=os.getenv("MYSQLPORT", 3306),
+    port=os.getenv("MYSQLPORT", 43510),
     user=os.getenv("MYSQLUSER", "root"),
     password=os.getenv("MYSQL_ROOT_PASSWORD"),
     database=os.getenv("MYSQL_DATABASE", "railway")
