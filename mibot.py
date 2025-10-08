@@ -1,3 +1,4 @@
+import os #para railway
 import logging
 import mysql.connector
 from telegram import Update
@@ -10,13 +11,26 @@ from telegram.ext import (
     ConversationHandler,
 )
 
-# Conexión a la base de datos
+"""
+# Conexión a la base de datos para usar worbench
 db = mysql.connector.connect(
     host="localhost",
     user="root",
     password="1234",  # Cambiar si usás contraseña
     database="mi_base"
+)"""
+#para usar con railway
+conexion = mysql.connector.connect(
+    host=os.getenv("MYSQLHOST", "crossover.proxy.rlwy.net"),
+    port=os.getenv("MYSQLPORT", 3306),
+    user=os.getenv("MYSQLUSER", "root"),
+    password=os.getenv("MYSQL_ROOT_PASSWORD"),
+    database=os.getenv("MYSQL_DATABASE", "railway")
 )
+
+
+
+
 
 # Estados
 ELEGIR, BUSCAR_NOMBRE, BUSCAR_CODIGO, BUSCAR_ZONA, ELEGIR_UNIDAD = range(5)
@@ -155,10 +169,11 @@ async def cancelar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return ConversationHandler.END
 
 # Crear app
-
+#app = ApplicationBuilder().token("7233780519:AAEzGE8daJpNvFnO6SK0X26wZvJ5b5rDHI0").build()
 import os
-app = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
 
+TOKEN = os.getenv("BOT_TOKEN")
+app = ApplicationBuilder().token(TOKEN).build()
 
 # Conversación
 conv_handler = ConversationHandler(
