@@ -170,7 +170,7 @@ async def cancelar(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # Crear app
 #app = ApplicationBuilder().token("7233780519:AAEzGE8daJpNvFnO6SK0X26wZvJ5b5rDHI0").build()
-import os
+
 
 TOKEN = os.getenv("BOT_TOKEN")
 app = ApplicationBuilder().token(TOKEN).build()
