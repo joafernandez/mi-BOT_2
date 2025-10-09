@@ -197,6 +197,7 @@ app.run_polling()
 #agregue por ultimo 
 from flask import Flask
 import threading
+import os
 
 app = Flask(__name__)
 
@@ -205,6 +206,6 @@ def home():
     return "Bot de Telegram corriendo correctamente"
 
 def run_flask():
-    app.run(host="0.0.0.0", port=10000)
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 10000)))
 
 threading.Thread(target=run_flask).start()
