@@ -24,7 +24,8 @@ conexion = mysql.connector.connect(
     host=os.getenv("MYSQLHOST", "crossover.proxy.rlwy.net"),
     port=os.getenv("MYSQLPORT", 43510),
     user=os.getenv("MYSQLUSER", "root"),
-    password=os.getenv("MYSQL_ROOT_PASSWORD","XdJJtIToMTBpIpbUxwBnONCumfYwRaOc"),
+    #password=os.getenv("MYSQL_ROOT_PASSWORD","XdJJtIToMTBpIpbUxwBnONCumfYwRaOc"),
+    password=os.getenv("MYSQLPASSWORD","XdJJtIToMTBpIpbUxwBnONCumfYwRaOc"),
     database=os.getenv("MYSQL_DATABASE", "railway")
 )
 
@@ -190,3 +191,20 @@ conv_handler = ConversationHandler(
 
 app.add_handler(conv_handler)
 app.run_polling()
+
+
+
+#agregue por ultimo 
+from flask import Flask
+import threading
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot de Telegram corriendo correctamente"
+
+def run_flask():
+    app.run(host="0.0.0.0", port=10000)
+
+threading.Thread(target=run_flask).start()
